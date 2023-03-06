@@ -15,15 +15,21 @@
 
 import Foundation
 
-var input = Int(readLine()!)
-if let input = input, input >= 1 && input <= 100 {
+var result = 0
+var intArray = [Int]()
+while intArray.count < 5 {
+    let input = readLine()!
+    let inputArray = input.split(separator: " ").map({ Int($0) })
     
-    for idx in 1...input {
-        let stringArray = [String].init(repeating: "*", count: idx).joined()
-        print(stringArray)
+    for item in inputArray {
+        if let item = item, item >= 0 && item <= 9 {
+            result += Int(pow(Double(item), 2))
+            intArray.append(item)
+        }
     }
 }
 
+print(result % 10)
 
 
 //var substring = [Int64]()
