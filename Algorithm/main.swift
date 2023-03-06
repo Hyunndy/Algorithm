@@ -15,32 +15,36 @@
 
 import Foundation
 
-var substring = [Int]()
-while substring.count < 2 {
-    let input = readLine()!
-    let splitArray = input.split(separator: " ").map({ Int($0) })
-    for string in splitArray {
-        
-        if let string = string, string >= -100000 && Double(string) <= 100000 {
-            if substring.count > 1 {
-                if substring[0] >= string {
-                    substring.append(string)
-                }
-            } else {
-                substring.append(string)
-            }
-        }
+var input = Int(readLine()!)
+if let input = input, input >= 1 && input <= 100 {
+    
+    for idx in 1...input {
+        let stringArray = [String].init(repeating: "*", count: idx).joined()
+        print(stringArray)
     }
 }
 
-let tuple = (substring[0], substring[1])
-switch tuple {
-case let (x,y) where x > y:
-    print(">")
-case let (x,y) where x < y:
-    print("<")
-case let (x,y) where x == y:
-    print("==")
-default:
-    break
-}
+
+
+//var substring = [Int64]()
+//while substring.count < 2 {
+//    let input = Int64(readLine()!)
+//            if let string = input, Double(string) >= -pow(10, 1000) && Double(string) <= pow(10, 1000) {
+//                                substring.append(string)
+//    //    let splitArray = input.split(separator: " ").map({ Int($0) })
+////    for string in splitArray {
+//
+////        if let string = string, string >= -10000 && string <= 10000 {
+////            if substring.count > 1 {
+////                if substring[0] >= string {
+////                    substring.append(string)
+////                }
+////            } else {
+////            }
+////        }
+//    }
+//}
+//
+//print(substring[0] + substring[1])
+//print(substring[0] - substring[1])
+//print(substring[0] * substring[1])
