@@ -15,42 +15,25 @@
 
 import Foundation
 
-var result = 0
-var intArray = [Int]()
-while intArray.count < 5 {
-    let input = readLine()!
-    let inputArray = input.split(separator: " ").map({ Int($0) })
-    
-    for item in inputArray {
-        if let item = item, item >= 0 && item <= 9 {
-            result += Int(pow(Double(item), 2))
-            intArray.append(item)
+var s = ""
+var ans:Bool = true
+var chStack = Stack<Character>()
+for c in s {
+    if c == "(" {
+        chStack.push(c)
+    } else if c == ")" {
+        // 없는데 나온 경우
+        if chStack.isEmpty == true {
+            ans = false
+            break
+        } else {
+            chStack.pop()
         }
     }
 }
 
-print(result % 10)
-
-
-//var substring = [Int64]()
-//while substring.count < 2 {
-//    let input = Int64(readLine()!)
-//            if let string = input, Double(string) >= -pow(10, 1000) && Double(string) <= pow(10, 1000) {
-//                                substring.append(string)
-//    //    let splitArray = input.split(separator: " ").map({ Int($0) })
-////    for string in splitArray {
-//
-////        if let string = string, string >= -10000 && string <= 10000 {
-////            if substring.count > 1 {
-////                if substring[0] >= string {
-////                    substring.append(string)
-////                }
-////            } else {
-////            }
-////        }
-//    }
-//}
-//
-//print(substring[0] + substring[1])
-//print(substring[0] - substring[1])
-//print(substring[0] * substring[1])
+if chStack.count > 0 {
+    ans = false
+} else {
+    ans = true
+}
