@@ -15,32 +15,31 @@
  
  특정문자 제거 : components(separatedBy: "0").joined()
  진법 변환: init(radix)
+ 
+ 짝지어 제거하기 문제 처럼 이런 문제는 스택을 떠올리도록하자
  */
 
 
 import Foundation
 
-func getCount(target: Int, numberCount: Int) -> Int {
-    var nextNumber = target
+func solution(_ s:String) -> Int{
+    var answer:Int = -1
     
-    for item in target..<1000000 {
-        var newOneCount = String(item, radix: 2).filter( { $0 == "1"}).count
-        if numberCount == newOneCount {
-            nextNumber = item
-            break
+    // 이거 스택으로 푼다고?
+    var stack = Stack<Character>()
+    for c in s {
+        if stack.count == 0 {
+            stack.push(c)
+        } else {
+            // 맨 위에 있는게 나랑 같다면?
+            if let last = stack.last, last == c {
+                stack.pop()
+            } else {
+                stack.push(c)
+            }
         }
     }
     
-    return (nextNumber)
-}
-
-func solution(_ n:Int) -> Int
-{
-    var number = n
-    var answer: Int = 0
-    
-    let nCount = String(n, radix: 2).filter( { $0 == "1"}).count
-    answer = getCount(target: n, numberCount: nCount)
-    
+    answer = stack.isEmpty == true ? 1 : 0
     return answer
 }

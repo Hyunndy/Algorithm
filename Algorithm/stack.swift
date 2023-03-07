@@ -18,6 +18,10 @@ struct Stack<T> {
         return stack.isEmpty
     }
     
+    var last: T? {
+        return stack.last
+    }
+    
     public mutating func push(_ element: T) {
         stack.append(element)
     }
