@@ -20,23 +20,27 @@
 
 import Foundation
 
-var prev = 1
-var cur = 0 + prev
-
-var n = 3
-
-for _ in 3...n {
-
-    let lastCur = cur
-    cur = (lastCur + prev) % 1234567
-    prev = lastCur
+func getCount(target: Int, numberCount: Int) -> Int {
+    var nextNumber = target
+    
+    for item in target..<1000000 {
+        var newOneCount = String(item, radix: 2).filter( { $0 == "1"}).count
+        if numberCount == newOneCount {
+            nextNumber = item
+            break
+        }
+    }
+    
+    return (nextNumber)
 }
 
-print(cur % 1234567)
-
-func solution(_ n:Int) -> Int {
+func solution(_ n:Int) -> Int
+{
+    var number = n
+    var answer: Int = 0
     
+    let nCount = String(n, radix: 2).filter( { $0 == "1"}).count
+    answer = getCount(target: n, numberCount: nCount)
     
-    
-    return 0
+    return answer
 }
