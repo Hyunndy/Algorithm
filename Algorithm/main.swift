@@ -22,24 +22,30 @@
 
 import Foundation
 
-func solution(_ s:String) -> Int{
-    var answer:Int = -1
+func solution(_ clothes:[[String]]) -> Int {
     
-    // 이거 스택으로 푼다고?
-    var stack = Stack<Character>()
-    for c in s {
-        if stack.count == 0 {
-            stack.push(c)
+    var dic = [String: Int]()
+    
+    var amount = 1
+    
+    // [["의상의 이름", "의상의 종류"]]
+    // 의상의 종류를 key 값으로 하고 value숫자만 하면 상관없는문제였음..대박!
+    // 근데 안입는 경우도 있으니까 2로 초기화해줘야함
+    for cloth in clothes {
+        
+        // key값이 안들어있다면!
+        if let kind = dic[cloth[1]] {
+            dic.updateValue(kind + 1, forKey: cloth[1])
         } else {
-            // 맨 위에 있는게 나랑 같다면?
-            if let last = stack.last, last == c {
-                stack.pop()
-            } else {
-                stack.push(c)
-            }
+            dic.updateValue(2, forKey: cloth[1])
         }
     }
     
-    answer = stack.isEmpty == true ? 1 : 0
-    return answer
+    for value in dic.values {
+        amount *= value
+    }
+    
+    amount -= 1
+    
+    return amount
 }
