@@ -12,14 +12,31 @@
  Int형은 -9 * 10(18승) ~ 9 * 10(18승)
  
  두 배열을 곱해서 최소값을 구하려면 최소 * 최대를 곱해야함
+ 
+ 특정문자 제거 : components(separatedBy: "0").joined()
+ 진법 변환: init(radix)
  */
 
 
 import Foundation
 
-a = A.sorted(by: { $0 < $1 })
-b = B.sorted(by: { $0 > $1 })
+var prev = 1
+var cur = 0 + prev
 
-for (idx, item) in a.enumerated() {
-    ans += item * b[idx]
+var n = 3
+
+for _ in 3...n {
+
+    let lastCur = cur
+    cur = (lastCur + prev) % 1234567
+    prev = lastCur
+}
+
+print(cur % 1234567)
+
+func solution(_ n:Int) -> Int {
+    
+    
+    
+    return 0
 }
