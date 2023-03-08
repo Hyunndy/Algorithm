@@ -26,12 +26,16 @@ struct Stack<T> {
         stack.append(element)
     }
     
+    public mutating func push(_ element: [T]) {
+        stack.append(contentsOf: element)
+    }
+    
     public mutating func pop() -> T? {
         return isEmpty ? nil : stack.popLast()
     }
 }
 
-struct Queue<T> {
+struct Queue<T> where T: Equatable {
     private var queue: [T] = []
     
     var count: Int {
@@ -42,8 +46,16 @@ struct Queue<T> {
         return queue.isEmpty
     }
     
+    func contain(_ element: T) -> Bool {
+        return queue.contains(element)
+    }
+    
     public mutating func push(_ element: T) {
         queue.append(element)
+    }
+    
+    public mutating func push(_ element: [T]) {
+        queue.append(contentsOf: element)
     }
     
     public mutating func pop() -> T? {

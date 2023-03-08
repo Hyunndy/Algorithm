@@ -10,6 +10,8 @@
 		0278063129B632B400535B76 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0278063029B632B400535B76 /* main.swift */; };
 		0278063829B6580C00535B76 /* stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0278063729B6580C00535B76 /* stack.swift */; };
 		D516BF2629B71CB6007B043A /* HashTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D516BF2529B71CB6007B043A /* HashTable.swift */; };
+		D516BF2829B727CF007B043A /* BFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D516BF2729B727CF007B043A /* BFS.swift */; };
+		D538B07029B866CE0064EADE /* DFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538B06F29B866CE0064EADE /* DFS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +31,8 @@
 		0278063029B632B400535B76 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0278063729B6580C00535B76 /* stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stack.swift; sourceTree = "<group>"; };
 		D516BF2529B71CB6007B043A /* HashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTable.swift; sourceTree = "<group>"; };
+		D516BF2729B727CF007B043A /* BFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFS.swift; sourceTree = "<group>"; };
+		D538B06F29B866CE0064EADE /* DFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				0278063029B632B400535B76 /* main.swift */,
 				0278063729B6580C00535B76 /* stack.swift */,
 				D516BF2529B71CB6007B043A /* HashTable.swift */,
+				D516BF2729B727CF007B043A /* BFS.swift */,
+				D538B06F29B866CE0064EADE /* DFS.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -129,6 +135,8 @@
 				0278063829B6580C00535B76 /* stack.swift in Sources */,
 				D516BF2629B71CB6007B043A /* HashTable.swift in Sources */,
 				0278063129B632B400535B76 /* main.swift in Sources */,
+				D516BF2829B727CF007B043A /* BFS.swift in Sources */,
+				D538B07029B866CE0064EADE /* DFS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
