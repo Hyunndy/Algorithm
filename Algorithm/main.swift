@@ -9,7 +9,7 @@
  Swift 입력 처리 방법
  노말: readLine()
  지수 처리: pow
- Int형은 -9 * 10(18승) ~ 9 * 10(18승)
+ Int형은 -9 * 10(18승) ~ 9 * 10(18승https://github.com/layoutBox/PinLayout/blob/master/Example/PinLayoutSample/UI/Examples/CollectionViewExample/HouseCell.swift)
  
  두 배열을 곱해서 최소값을 구하려면 최소 * 최대를 곱해야함
  
@@ -23,18 +23,26 @@
 import Foundation
 
 
-let graph: [String: [String]] = [
-    "A" : ["B", "C"],
-    "B" : ["A", "D", "E"],
-    "C" : ["A", "F"],
-    "D" : ["B"],
-    "E" : ["B"],
-    "F" : ["C"],
-]
+func solution(_ numbers:[Int], _ target:Int) -> Int {
 
-let bfsQueue = BFS(graph: graph, start: "A")
-print(bfsQueue)
-
-let dfsQueue = DFS(graph: graph, start: "A")
-print(dfsQueue)
-
+    // 최종 return 될 값
+    var count = 0
+    
+    func DFS(index: Int, sum: Int) {
+        
+        // 멈추기
+        if (index == numbers.count) {
+            if sum == target {
+                count += 1
+            }
+            return
+        }
+        
+        DFS(index: index+1, sum: sum - numbers[index])
+        DFS(index: index+1, sum: sum + numbers[index])
+    }
+    
+    DFS(index: 0, sum: 0)
+    
+    return count
+}
