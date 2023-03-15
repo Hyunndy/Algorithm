@@ -21,3 +21,14 @@
 # 리트코드 대표 문제(반복할 것)
 LinkedList: https://leetcode.com/problems/design-browser-history/
 
+# Stack
+## Stack 코테 적용 방법
+- LIFO(Last-Input-First-Out) 특성을 활용한 문제
+- DFS(깊이 우선 탐색)에 사용
+
+## 
+- 짝을 맞춰야 하는가?
+- LIFO를 들이밀었을 때 대충 풀릴 것 같은가?
+
+## 대표 문제 유형
+- 괄호 유효성 문제: https://leetcode.com/problems/valid-parentheses/

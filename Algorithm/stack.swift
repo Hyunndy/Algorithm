@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ LIFO = Last Input First Out
+ */
 struct Stack<T> {
     private var stack: [T] = []
     
@@ -32,5 +35,9 @@ struct Stack<T> {
     
     public mutating func pop() -> T? {
         return isEmpty ? nil : stack.popLast()
+    }
+    
+    public mutating func top() -> T? {
+        return stack.last
     }
 }
