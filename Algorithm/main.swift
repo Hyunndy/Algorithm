@@ -22,81 +22,24 @@
 
 import Foundation
 
+//var linkedList = LinkedList()
+//linkedList.append(value: 1)
+//linkedList.append(value: 2)
+//linkedList.append(value: 3)
+//linkedList.append(value: 4)
+//
+//linkedList.insert(at: 0, value: 100)
+//print(linkedList.get(idx: 0)?.value)
+//
+//print(linkedList.get(idx: 0)?.value)
+//print(linkedList.get(idx: 1)?.value)
+//print(linkedList.get(idx: 3)?.value)
+//
+//linkedList.insert(at: 2, value: 9)
+//print(linkedList.get(idx: 2)?.value)
 
-func solution(_ numbers:[Int], _ target:Int) {
-    
-    // 두 정수가 저장되었다.
-    // 한 정수랑, 다른 정수가 있어야한다.
-    var result = false
-    
-    for number in numbers {
-        if number > target {
-            continue
-        }
-        
-        for number2 in numbers {
-            if number == number2 {
-                continue
-            }
-            
-            if number2 > target {
-                continue
-            }
-            
-            result = (number + number2) == target
-            
-            if result == true {
-                break
-            }
-        }
-        
-        if result == true {
-            break
-        }
-    }
-    
-    print(result)
-}
-
-solution([4,1,9,7,5,3,16], 14)
-solution([2,1,5,7], 4)
-
-func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-
-    // 1. 일단 정렬
-    var nums = nums.sorted()
-    
-    // 2. Two Pointer 사용.
-    var left = 0
-    var right = nums.count - 1
-    
-    var resultArray = [0, 0]
-    
-    for _ in nums {
-        var sum = nums[left] + nums[right]
-        
-        if sum == target {
-            left = nums.firstIndex(of: nums[left])!
-            right = nums.lastIndex(of: right)!
-            resultArray = [left, right]
-            break
-        }
-        
-        if sum < target {
-            left += 1
-        }
-        
-        if sum > target {
-            right -= 1
-        }
-        
-        if left == right {
-            break
-        }
-    }
-    
-    return resultArray
-}
-
-
-print(twoSum([3,3], 6))
+var linkedList = LinkedList_Tail()
+linkedList.append(value: 1)
+linkedList.append(value: 2)
+linkedList.append(value: 3)
+linkedList.append(value: 4)
