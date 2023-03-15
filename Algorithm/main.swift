@@ -22,53 +22,55 @@
 import Foundation
 
 class Solution {
+//    struct Stack<T> {
+//        private var stack: [T] = []
+//
+//        var count: Int {
+//            return stack.count
+//        }
+//
+//        var isEmpty: Bool {
+//            return stack.isEmpty
+//        }
+//
+//        var last: T? {
+//            return stack.last
+//        }
+//
+//        public mutating func push(_ element: T) {
+//            stack.append(element)
+//        }
+//
+//        public mutating func push(_ element: [T]) {
+//            stack.append(contentsOf: element)
+//        }
+//
+//        public mutating func pop() -> T? {
+//            return isEmpty ? nil : stack.popLast()
+//        }
+//
+//        public mutating func top() -> T? {
+//            return stack.last
+//        }
+//
+//        public mutating func getIndex(where: T) -> Int {
+//            return stack.firstIndex(where: $0 == T)
+//        }
+//    }
     
-    struct Stack<T> {
-        private var stack: [T] = []
+    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
         
-        var count: Int {
-            return stack.count
-        }
+        var result = Array.init(repeating: 0, count: temperatures.count)
+        var stack = [(Int, Int)]()
         
-        mutating func push(element: T) {
-            stack.append(element)
-        }
-        
-        mutating func pop() -> T? {
-            return stack.popLast()
-        }
-    }
-    
-    
-    func isValid(_ s: String) -> Bool {
-        var result = true
-        var stack = Stack<Character>()
-        
-        for bracket in s {
-            if bracket == "(" || bracket == "[" || bracket == "{" {
-                stack.push(element: bracket)
-            } else {
-                let pop = stack.pop()
-                if pop == nil {
-                    result = false
-                    break
-                } else {
-                    if bracket == ")" && pop == "(" {
-                        continue
-                    } else if bracket == "}" && pop == "{" {
-                        continue
-                    } else if bracket == "]" && pop == "[" {
-                        continue
-                    } else {
-                        result = false
-                        break
-                    }
-                }
+        for (cur_day, cur_temp) in temperatures.enumerated() {
+            
+            while stack.last?.1 ?? 50000 < cur_temp {
+                var (prev_day, prev_temp) = stack.popLast()!
+                result[prev_day] = cur_day - prev_day
             }
-        }
-        
-        if stack.count > 0 {
-            result = false
+            
+            stack.append((cur_day, cur_temp))
         }
         
         return result

@@ -29,6 +29,9 @@ LinkedList: https://leetcode.com/problems/design-browser-history/
 ## 
 - 짝을 맞춰야 하는가?
 - LIFO를 들이밀었을 때 대충 풀릴 것 같은가?
+- 괄호 처럼 예쁜 짝이 아니더라도, 날씨 처럼 어떻게든 짝이 이뤄져야 pop 되는애들인지 보자.
+
 
 ## 대표 문제 유형
 - 괄호 유효성 문제: https://leetcode.com/problems/valid-parentheses/
+- 오늘의 날씨 : https://leetcode.com/problems/daily-temperatures/submissions/915741750/
