@@ -9,7 +9,7 @@
  Swift 입력 처리 방법
  노말: readLine()
  지수 처리: pow
- Int형은 -9 * 10(18승) ~ 9 * 10(18승https://github.com/layoutBox/PinLayout/blob/master/Example/PinLayoutSample/UI/Examples/CollectionViewExample/HouseCell.swift)
+ Int형은 -9 * 10(18승) ~ 9 * 10(18)
  
  두 배열을 곱해서 최소값을 구하려면 최소 * 최대를 곱해야함
  
@@ -23,26 +23,80 @@
 import Foundation
 
 
-func solution(_ numbers:[Int], _ target:Int) -> Int {
-
-    // 최종 return 될 값
-    var count = 0
+func solution(_ numbers:[Int], _ target:Int) {
     
-    func DFS(index: Int, sum: Int) {
-        
-        // 멈추기
-        if (index == numbers.count) {
-            if sum == target {
-                count += 1
-            }
-            return
+    // 두 정수가 저장되었다.
+    // 한 정수랑, 다른 정수가 있어야한다.
+    var result = false
+    
+    for number in numbers {
+        if number > target {
+            continue
         }
         
-        DFS(index: index+1, sum: sum - numbers[index])
-        DFS(index: index+1, sum: sum + numbers[index])
+        for number2 in numbers {
+            if number == number2 {
+                continue
+            }
+            
+            if number2 > target {
+                continue
+            }
+            
+            result = (number + number2) == target
+            
+            if result == true {
+                break
+            }
+        }
+        
+        if result == true {
+            break
+        }
     }
     
-    DFS(index: 0, sum: 0)
-    
-    return count
+    print(result)
 }
+
+solution([4,1,9,7,5,3,16], 14)
+solution([2,1,5,7], 4)
+
+func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+
+    // 1. 일단 정렬
+    var nums = nums.sorted()
+    
+    // 2. Two Pointer 사용.
+    var left = 0
+    var right = nums.count - 1
+    
+    var resultArray = [0, 0]
+    
+    for _ in nums {
+        var sum = nums[left] + nums[right]
+        
+        if sum == target {
+            left = nums.firstIndex(of: nums[left])!
+            right = nums.lastIndex(of: right)!
+            resultArray = [left, right]
+            break
+        }
+        
+        if sum < target {
+            left += 1
+        }
+        
+        if sum > target {
+            right -= 1
+        }
+        
+        if left == right {
+            break
+        }
+    }
+    
+    return resultArray
+}
+
+
+print(twoSum([3,3], 6))
