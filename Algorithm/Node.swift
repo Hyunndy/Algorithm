@@ -7,28 +7,30 @@
 
 import Foundation
 
-class Node {
-    var value: Int = 0
-    var next: Node?
+class Node<T> {
+    var value: T
+    var prev: Node<T>?
+    var next: Node<T>?
     
-    init(value: Int, next: Node? = nil) {
+    init(value: T, prev: Node<T>? = nil, next: Node<T>? = nil) {
         self.value = value
+        self.prev = prev
         self.next = next
     }
 }
 
 class LinkedList_Tail {
-    var head: Node?
-    var tail: Node?
+    var head: Node<Int>?
+    var tail: Node<Int>?
     
-    init(head: Node? = nil, tail: Node? = nil) {
+    init(head: Node<Int>? = nil, tail: Node<Int>? = nil) {
         self.head = head
         self.tail = tail
     }
     
     // for문 안돌기 때문에 O(1)
     func append(value: Int) {
-        let newNode = Node(value: value)
+        let newNode = Node<Int>(value: value)
         
         if self.head == nil {
             self.head = newNode
@@ -43,15 +45,15 @@ class LinkedList_Tail {
 }
 
 class LinkedList {
-    var head: Node?
+    var head: Node<Int>?
     var size: Int = 0
     
-    init(head: Node? = nil) {
+    init(head: Node<Int>? = nil) {
         self.head = head
     }
     
     func append(value: Int) {
-        let newNode = Node(value: value)
+        let newNode = Node<Int>(value: value)
         
         // 헤더가 아무 Node도 가리키지 않을 때
         if self.head == nil {
@@ -68,9 +70,9 @@ class LinkedList {
         }
     }
     
-    func get(idx: Int) -> Node? {
+    func get(idx: Int) -> Node<Int>? {
     
-        var resultNode: Node? = nil
+        var resultNode: Node<Int>? = nil
         var currentNode = self.head
         
         /// 1. while 사용 방법
@@ -98,7 +100,7 @@ class LinkedList {
     }
     
     func insert(at idx: Int, value: Int) {
-        let newNode = Node(value: value)
+        let newNode = Node<Int>(value: value)
         
         var prevNode = self.head
         if head == nil {
