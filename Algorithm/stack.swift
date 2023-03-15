@@ -34,31 +34,3 @@ struct Stack<T> {
         return isEmpty ? nil : stack.popLast()
     }
 }
-
-struct Queue<T> where T: Equatable {
-    private var queue: [T] = []
-    
-    var count: Int {
-        return queue.count
-    }
-    
-    var isEmpty: Bool {
-        return queue.isEmpty
-    }
-    
-    func contain(_ element: T) -> Bool {
-        return queue.contains(element)
-    }
-    
-    public mutating func push(_ element: T) {
-        queue.append(element)
-    }
-    
-    public mutating func push(_ element: [T]) {
-        queue.append(contentsOf: element)
-    }
-    
-    public mutating func pop() -> T? {
-        return isEmpty ? nil : queue.removeFirst()
-    }
-}
