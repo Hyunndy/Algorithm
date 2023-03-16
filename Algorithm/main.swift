@@ -24,51 +24,29 @@ import Foundation
 class Solution {
     func longestConsecutive(_ nums: [Int]) -> Int {
         
-        var dic: [Int: [Int]] = [:]
-        var result: [Int: Int] = [:]
-        for num in nums {
-            dic.updateValue([num - 1, num + 1], forKey: num)
-        }
+        var hashSet = Set(nums)
         
-        if dic.count == 0 || dic.count == 1 {
-            return dic.count
-        }
-        
-        for num in nums.sorted() {
-            if let prevValue = dic[num]?.first, dic[prevValue] != nil  {
-                result.updateValue(0, forKey: prevValue)
-            }
-            
-            if let nextValue = dic[num]?.last, dic[nextValue] != nil  {
-                result.updateValue(0, forKey: nextValue)
-            }
-        }
-        
-        for (key) in result.keys.sorted() {
-            print("키 : \(key)")
+        if hashSet.count == 0 || hashSet.count == 1 {
+            return hashSet.count
         }
         
         var maxCount = 1
-        var curCount = 1
-        let sortedKeyArray = result.keys.sorted()
-        var prevValue = sortedKeyArray.first ?? 0
-        for (idx, key) in sortedKeyArray.enumerated() {
-            if idx == 0 {
-                prevValue = key
+        for num in nums {
+            if hashSet.contains(num - 1) {
                 continue
             }
             
-            if prevValue + 1 == key {
+            var curCount = 1
+            var nowNum = num
+            while hashSet.contains(nowNum + 1) {
                 curCount += 1
-            } else {
-                curCount = 1
+                nowNum += 1
             }
             
             maxCount = max(maxCount, curCount)
-            prevValue = key
         }
         
-        return maxCount
+       return maxCount
     }
 }
 
