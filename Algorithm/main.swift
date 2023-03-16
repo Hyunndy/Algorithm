@@ -22,22 +22,54 @@
 import Foundation
 
 class Solution {
-    func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+    func longestConsecutive(_ nums: [Int]) -> Int {
         
-        var result = [Int]()
-        var dic: [Int: Int] = [:]
-        
-        for (idx, num) in nums.enumerated() {
-            if let value = dic[target - num] {
-                result = [value, idx].sorted()
-                break
-            }
-            
-            dic.updateValue(idx, forKey: num)
+        var dic: [Int: [Int]] = [:]
+        var result: [Int: Int] = [:]
+        for num in nums {
+            dic.updateValue([num - 1, num + 1], forKey: num)
         }
         
-        return result
+        if dic.count == 0 || dic.count == 1 {
+            return dic.count
+        }
+        
+        for num in nums.sorted() {
+            if let prevValue = dic[num]?.first, dic[prevValue] != nil  {
+                result.updateValue(0, forKey: prevValue)
+            }
+            
+            if let nextValue = dic[num]?.last, dic[nextValue] != nil  {
+                result.updateValue(0, forKey: nextValue)
+            }
+        }
+        
+        for (key) in result.keys.sorted() {
+            print("키 : \(key)")
+        }
+        
+        var maxCount = 1
+        var curCount = 1
+        let sortedKeyArray = result.keys.sorted()
+        var prevValue = sortedKeyArray.first ?? 0
+        for (idx, key) in sortedKeyArray.enumerated() {
+            if idx == 0 {
+                prevValue = key
+                continue
+            }
+            
+            if prevValue + 1 == key {
+                curCount += 1
+            } else {
+                curCount = 1
+            }
+            
+            maxCount = max(maxCount, curCount)
+            prevValue = key
+        }
+        
+        return maxCount
     }
 }
 
-print(Solution().twoSum([3,2,3], 6))
+print(Solution().longestConsecutive([100,4,200,1,3,2]))
