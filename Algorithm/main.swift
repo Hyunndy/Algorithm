@@ -22,57 +22,22 @@
 import Foundation
 
 class Solution {
-//    struct Stack<T> {
-//        private var stack: [T] = []
-//
-//        var count: Int {
-//            return stack.count
-//        }
-//
-//        var isEmpty: Bool {
-//            return stack.isEmpty
-//        }
-//
-//        var last: T? {
-//            return stack.last
-//        }
-//
-//        public mutating func push(_ element: T) {
-//            stack.append(element)
-//        }
-//
-//        public mutating func push(_ element: [T]) {
-//            stack.append(contentsOf: element)
-//        }
-//
-//        public mutating func pop() -> T? {
-//            return isEmpty ? nil : stack.popLast()
-//        }
-//
-//        public mutating func top() -> T? {
-//            return stack.last
-//        }
-//
-//        public mutating func getIndex(where: T) -> Int {
-//            return stack.firstIndex(where: $0 == T)
-//        }
-//    }
-    
-    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+    func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         
-        var result = Array.init(repeating: 0, count: temperatures.count)
-        var stack = [(Int, Int)]()
+        var result = [Int]()
+        var dic: [Int: Int] = [:]
         
-        for (cur_day, cur_temp) in temperatures.enumerated() {
-            
-            while stack.last?.1 ?? 50000 < cur_temp {
-                var (prev_day, prev_temp) = stack.popLast()!
-                result[prev_day] = cur_day - prev_day
+        for (idx, num) in nums.enumerated() {
+            if let value = dic[target - num] {
+                result = [value, idx].sorted()
+                break
             }
             
-            stack.append((cur_day, cur_temp))
+            dic.updateValue(idx, forKey: num)
         }
         
         return result
     }
 }
+
+print(Solution().twoSum([3,2,3], 6))
