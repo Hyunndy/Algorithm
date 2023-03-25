@@ -127,60 +127,99 @@ import Foundation
  3) 암시적 그래프는 visited 도 똑같은 형태로 만들어줘야 한다.
  4) 암시적 그래프는 완전 탐색을 위해 m*n 이중 for문 돌아야 한다.
  */
-class Solution {
+//class Solution {
+//
+//    func numIslands(_ grid: [[Character]]) -> Int {
+//
+//        var numOfIsland = 0
+//        let col = grid.count // 4
+//        let row = grid[0].count // 5
+//        var visited = Array(repeating: Array(repeating: false,count: row), count: col)
+//
+//        func bfs(curLoc: (Int, Int)) {
+//
+//            // 일단 방문부터?
+//            visited[curLoc.0][curLoc.1] = true
+//            // 상하좌우 이동
+//            var dx = [-1, 1, 0, 0]
+//            var dy = [0, 0, 1, -1]
+//            var q = Queue(enQueue: [(curLoc.0, curLoc.1)])
+//            while !q.isEmpty {
+//                let (curX, curY) = q.pop()
+//
+//                for idx in 0..<4 {
+//                    let nextX = curX + dx[idx]
+//                    let nextY = curY + dy[idx]
+//
+//                    if nextX >= 0 && nextX < col && nextY >= 0 && nextY < row {
+//                        if grid[nextX][nextY] == "1" && visited[nextX][nextY] == false {
+//                            visited[nextX][nextY] = true
+//                            q.push(element: (nextX, nextY))
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        for colIdx in 0..<col {
+//            for rowIdx in 0..<row {
+//                // 1이 아니거나 한 번 방문한 곳은 방문하면 안됨
+//                if grid[colIdx][rowIdx] == "1" && visited[colIdx][rowIdx] == false {
+//                    bfs(curLoc: (colIdx, rowIdx))
+//                    numOfIsland += 1
+//                }
+//            }
+//        }
+//
+//        return numOfIsland
+//    }
+//}
+//
+//let a = Solution().numIslands([
+//    ["1","1","1","1","0"],
+//    ["1","1","0","1","0"],
+//    ["1","1","0","0","0"],
+//    ["0","0","0","0","0"]
+//])
+//
+//print(a)
 
-    func numIslands(_ grid: [[Character]]) -> Int {
-    
-        var numOfIsland = 0
-        let col = grid.count // 4
-        let row = grid[0].count // 5
-        var visited = Array(repeating: Array(repeating: false,count: row), count: col)
+class Solution {
+    func shortestPathBinaryMatrix(_ grid: [[Int]]) -> Int {
         
-        func bfs(curLoc: (Int, Int)) {
+        let col = grid[0].count
+        var visited = Array(repeating: Array(repeating: false, count: col), count: col)
+        var path = -1
+        
+        if grid[0][0] == 1 {
+            return -1
+        }
+        
+            var dx = [-1, 1, 0, 0, 1, 1, -1, -1]
+            var dy = [0, 0, -1, 1, -1, 1, -1, 1]
+        let q = Queue(enQueue: [(0, 0, 1)])
+        while !q.isEmpty {
+            let curIdx = q.pop()
             
-            // 일단 방문부터?
-            visited[curLoc.0][curLoc.1] = true
-            // 상하좌우 이동
-            var dx = [-1, 1, 0, 0]
-            var dy = [0, 0, 1, -1]
-            var q = Queue(enQueue: [(curLoc.0, curLoc.1)])
-            while !q.isEmpty {
-                let (curX, curY) = q.pop()
+            if curIdx.0 == (col - 1) && curIdx.1 == (col - 1) {
+                print("으악")
+                path = curIdx.2
+                break
+            }
+            
+            for idx in 0..<dx.count {
+                let newX = curIdx.0 + dx[idx]
+                let newY = curIdx.1 + dy[idx]
                 
-                for idx in 0..<4 {
-                    let nextX = curX + dx[idx]
-                    let nextY = curY + dy[idx]
-                    
-                    if nextX >= 0 && nextX < col && nextY >= 0 && nextY < row {
-                        if grid[nextX][nextY] == "1" && visited[nextX][nextY] == false {
-                            visited[nextX][nextY] = true
-                            q.push(element: (nextX, nextY))
-                        }
+                if newX >= 0 && newX < col && newY >= 0 && newY < col {
+                    if visited[newX][newY] == false && grid[newX][newY] == 0 {
+                        visited[newX][newY] = true
+                        q.push(element: (newX, newY, curIdx.2 + 1))
                     }
                 }
             }
         }
         
-        for colIdx in 0..<col {
-            for rowIdx in 0..<row {
-                // 1이 아니거나 한 번 방문한 곳은 방문하면 안됨
-                if grid[colIdx][rowIdx] == "1" && visited[colIdx][rowIdx] == false {
-                    bfs(curLoc: (colIdx, rowIdx))
-                    numOfIsland += 1
-                }
-            }
-        }
-        
-        return numOfIsland
+        return path
     }
 }
-
-let a = Solution().numIslands([
-    ["1","1","1","1","0"],
-    ["1","1","0","1","0"],
-    ["1","1","0","0","0"],
-    ["0","0","0","0","0"]
-])
-
-print(a)
-
