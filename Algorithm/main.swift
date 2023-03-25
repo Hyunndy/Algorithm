@@ -65,37 +65,48 @@ public class TreeNode {
     }
 }
 
-// 두 노드의 공통 조상 중 가장 낮은 Node를 찾아라
 class Solution {
-    func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+    
+    // 깊이 - DFS 버전
+    //    func maxDepth(_ root: TreeNode?) -> Int {
+    //        if root == nil {
+    //            return 0
+    //        }
+    //
+    //        let left = maxDepth(root?.left)
+    //        let right = maxDepth(root?.right)
+    //
+    //        return max(left, right) + 1
+    //    }
+    
+    
+    // 깊이 - BFS
+    func maxDepth(_ root: TreeNode?) -> Int {
+        
+        var depth = 0
         
         if root == nil {
-            return nil
+            return 0
         }
         
-        // 내가 p나 q?? 내가 LCA인가봐!!
-        if root?.val == p?.val || root?.val == q?.val {
-            return root
+        root?.val = 1
+        var q = Queue(enQueue: [root])
+        while !q.isEmpty {
+            let curNode = q.pop()
+            if curNode != nil {
+                depth = max(depth, curNode?.val ?? 0)
+            }
+            
+            if curNode?.left != nil {
+                curNode?.left?.val = depth + 1
+                q.push(element: curNode?.left)
+            }
+            if curNode?.right != nil {
+                curNode?.right?.val = depth + 1
+                q.push(element: curNode?.right)
+            }
         }
         
-        let leftNode = lowestCommonAncestor(root?.left, p, q)
-        let rightNode = lowestCommonAncestor(root?.right, p, q)
-        
-        // 헉 leftNode, rightNode 둘 다 있다고?! 그럼 내가 LCA?!
-        if leftNode != nil && rightNode != nil {
-            return root
-        }
-        
-        // 너희 둘 중 하나가 있었구나.. 하지만 둘 다는 없으니 나는 LCA가 아니야
-        if leftNode != nil {
-            return leftNode
-        }
-        
-        if rightNode != nil {
-            return rightNode
-        }
-        
-        // 둘 다 없으면 나 너무 쩌린데..
-        return nil
+        return depth
     }
 }

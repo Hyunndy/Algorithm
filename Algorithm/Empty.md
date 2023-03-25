@@ -54,3 +54,17 @@ Collision 이슈가 있어서 최아그이 경우 O(n)이 될 수 있음
 - Two Sum:
     https://leetcode.com/problems/two-sum/
 - 연속된 순열(존나별표): https://leetcode.com/problems/longest-consecutive-sequence
+
+# Tree
+- Tree 구현
+- Tree 순회
+    - BFS
+    - DFS
+        - post order
+        - in order
+        - pre order
+        
+## 대표 문제 유형
+- LCA:
+    https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+- 
