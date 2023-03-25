@@ -38,3 +38,32 @@ import Foundation
 //    
 //    return visitedQueue
 //}
+
+
+/**
+ BFS 트리 순회, Deque가 쓰인다.
+ BFS == Deque를 사용해 순회하는 방식
+ */
+
+//func bfs(root: Node<Int>) -> [Int] {
+//
+//    // 방문 했다는 배열
+//    var visited = [Int]()
+//
+//    // 큐에 노드를 넣는다.
+//    let q = Deque<Node<Int>>(enqueue: [root])
+//    while q.isEmpty == false {
+//        let curNode = q.popFirst()
+//        visited.append(curNode.value)
+//
+//        if let leftNode = curNode.left {
+//            q.pushFirst(element: leftNode)
+//        }
+//
+//        if let rightNode = curNode.right {
+//            q.pushFirst(element: rightNode)
+//        }
+//    }
+//
+//    return visited
+//}

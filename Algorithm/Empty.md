@@ -35,3 +35,22 @@ LinkedList: https://leetcode.com/problems/design-browser-history/
 ## 대표 문제 유형
 - 괄호 유효성 문제: https://leetcode.com/problems/valid-parentheses/
 - 오늘의 날씨 : https://leetcode.com/problems/daily-temperatures/submissions/915741750/
+
+# Hash Table
+존.나 많이나옵니다.
+## HashTable이란?
+hash func h에 key값을 넣어서 얻은 해시 값 h(key)를 index(위치) 삼아 key-value 데이터 쌍을 저장한다.
+Collision 이슈가 있어서 최아그이 경우 O(n)이 될 수 있음
+이걸 쓰는 이유는 메모리를 많이 써서 시간 복잡도를 줄이기 위함임.
+문제에서 대놓고 시간 복잡도 빡세보이면 Hash Table 활용을 생각해보는게 좋다.
+
+## Swift에서 사용 하기
+- Dictionary
+- Set
+
+- 데이터 찾기 시간 복잡도: O(1)
+
+## 대표 문제 유형
+- Two Sum:
+    https://leetcode.com/problems/two-sum/
+- 연속된 순열(존나별표): https://leetcode.com/problems/longest-consecutive-sequence
